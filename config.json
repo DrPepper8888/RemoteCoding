@@ -1,0 +1,24 @@
+{
+  "port": 8765,
+  "defaultAgent": "opencode",
+  "opencodePath": "",
+  "websocket": {
+    "enabled": true
+  },
+  "feishu": {
+    "enabled": false,
+    "appId": "cli_xxxxxxxxxx",
+    "appSecret": "xxxxxxxxxx"
+  },
+  "wechat": {
+    "enabled": false,
+    "webhookUrl": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxxxxxxxx",
+    "corpId": "",
+    "secret": "",
+    "agentId": ""
+  },
+  "qq": {
+    "enabled": false,
+    "onebotUrl": "http://127.0.0.1:8080"
+  }
+}

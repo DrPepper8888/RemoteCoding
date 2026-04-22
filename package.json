@@ -1,0 +1,19 @@
+{
+  "name": "opencode-mobile-remote",
+  "version": "2.0.0",
+  "description": "Control OpenCode from mobile, WeChat, Feishu, and QQ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0",
+    "express": "^4.18.3",
+    "axios": "^1.6.7",
+    "body-parser": "^1.20.2"
+  },
+  "keywords": ["opencode", "remote", "mobile", "websocket", "wechat", "feishu", "qq"],
+  "author": "",
+  "license": "MIT"
+}
