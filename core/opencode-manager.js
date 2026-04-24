@@ -72,7 +72,9 @@ class AgentManager {
     
     const bridgePath = path.join(__dirname, '..', 'bridge.py');
     
-    this.bridgeProcess = spawn('python', [bridgePath], {
+    // 兼容 Mac 和 Linux：优先用 python3，没有则用 python
+    const pythonCmd = process.platform === 'darwin' ? 'python3' : (process.platform === 'win32' ? 'python' : 'python3');
+    this.bridgeProcess = spawn(pythonCmd, [bridgePath], {
       cwd: path.join(__dirname, '..'),
       stdio: ['pipe', 'pipe', 'pipe']
     });
@@ -164,6 +166,15 @@ class AgentManager {
 
   getCurrentAgent() {
     return this.currentAgent;
+  }
+
+  getAvailableAgents() {
+    return Object.keys(AGENT_CONFIGS);
+  }
+
+  getCurrentAgentName() {
+    const config = AGENT_CONFIGS[this.currentAgent];
+    return config ? config.name : this.currentAgent;
   }
 
   broadcast(message) {

@@ -18,14 +18,14 @@ message_queue = deque(maxlen=100)
 last_client_msg_id = 0
 next_msg_id = 1
 
-PORT = 8765
+PORT = 8766  # 注意：主服务器 server.js 用 8765，简化版用 8766 避免冲突
 
 def broadcast(msg):
     global next_msg_id
     msg_with_id = {**msg, 'id': next_msg_id}
     next_msg_id += 1
     message_queue.append(msg_with_id)
-    print(f"[DEBUG] [BROADCAST: {msg}")
+    print(f"[DEBUG] [BROADCAST] {msg}")
 
 def read_agent_output():
     global agent_process, stop_thread
@@ -38,10 +38,10 @@ def read_agent_output():
             if not line:
                 time.sleep(0.05)
                 continue
-            print(f"[DEBUG] [AGENT OUTPUT: {repr(line)}")
+            print(f"[DEBUG] [AGENT OUTPUT] {repr(line)}")
             broadcast({'type': 'output', 'content': line})
         except Exception as e:
-            print(f"[DEBUG] [AGENT READ ERROR: {e}")
+            print(f"[DEBUG] [AGENT READ ERROR] {e}")
             traceback.print_exc()
             break
     
